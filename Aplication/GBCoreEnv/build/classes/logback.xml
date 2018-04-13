@@ -1,0 +1,28 @@
+<configuration scan="false">
+  
+    <property name="LOG_PATH" value="./gblogs" />
+ 
+    <appender name="FILE" class="ch.qos.logback.core.FileAppender">
+        <file>${LOG_PATH}/GB_Scheduler.log</file>
+ 
+        <encoder>
+            <pattern>[%date] - GB_Scheduler_LOG %level [%thread] %logger{26} [%file:%line] %msg%n
+            </pattern>
+        </encoder>
+    </appender>
+ 
+    <!-- para filtrar por paquetes y que cada paquete tenga su nivel de log, usar la siguiente linea -->
+    <!--
+    <logger name="com.empresa.dep.proyecto" level="INFO"/>
+    <logger name="com.empresa.dep.proyecto.log" level="DEBUG" />
+    -->
+	
+    <logger name="org.quartz" level="ERROR">	
+        <appender-ref ref="FILE" />
+    </logger>
+	
+	<root level="ERROR">
+		<appender-ref ref="FILE" />
+	</root>
+ 
+</configuration>
